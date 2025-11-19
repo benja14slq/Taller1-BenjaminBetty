@@ -39,7 +39,7 @@ function MedicionesView(){
     }, [mediciones, filtroAplicado]);
 
     const fechaBodyTemplate = (rowData) => {
-        return new Date(rowData.fechaISO).toLocaleTimeString();
+        return new Date(rowData.fechaISO).toLocaleDateString();
     }
 
     const horaBodyTemplate = (rowData) => {
@@ -76,7 +76,7 @@ function MedicionesView(){
                     placeholder="Filtrar por tipo"
                 />
             </span>
-            <Button label="Filtrat" icon="pi pi-filter" onClick={handleFilter}/>
+            <Button label="Filtrar" icon="pi pi-filter" onClick={handleFilter}/>
         </div>
     );
 

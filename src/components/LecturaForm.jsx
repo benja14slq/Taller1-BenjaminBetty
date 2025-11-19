@@ -27,7 +27,7 @@ function LecturaForm() {
         {name: '09', text: '09'},
         {name: '10', text: '10'},
     ];
-    const [medidor, setMedidor] = useState(valorMedidor(0));
+    const [medidor, setMedidor] = useState(valorMedidor[0]);
     const [direccion, setDireccion] = useState('');
     const [valor, setValor] = useState(1);
     const [tipo, setTipo] = useState('');
@@ -51,8 +51,8 @@ function LecturaForm() {
 
         const nuevaMedicion = {
             id: uuidv4(),
-            fechaISO: fecha.toISOString(), 
-            medidor: medidor,
+            fechaISO: fecha.toISOString(),
+            medidor: medidor.text,
             direccion: direccion,
             valor: valor,
             tipo: tipo
@@ -73,7 +73,7 @@ function LecturaForm() {
                 </div>
                 <div className='p-field'>
                     <label htmlFor="medidor">Medidor</label>
-                    <Dropdown id='medidor' options={valorMedidor} value={medidor}
+                    <Dropdown options={valorMedidor} value={medidor} optionLabel='text'
                             onChange={(e) => setMedidor(e.value)} placeholder='Seleccione un medidor'/>
                 </div>
                 <div className='p-field'>
@@ -87,8 +87,8 @@ function LecturaForm() {
                             showButtons min={1} max={500}/>
                 </div>
                 <div className='p-field'>
-                    <label>Label</label>
                     <div className="d-flex flex-row gap-3 mt-2">
+                        <label htmlFor="">Tipo de Medida</label>
                         {tiposMedida.map((t)=> (
                             <div key={t.key} className='d-flex align-items-center'>
                                 <RadioButton inputId={t.key} name='tipo' value={t.name}
@@ -98,7 +98,7 @@ function LecturaForm() {
                         ))}
                     </div>
                 </div>
-                <Button label='Registrar Medición' icon='pi pi-check' onChange={handleRegistrar}/>
+                <Button label='Registrar Medición' icon='pi pi-check' onClick={handleRegistrar}/>
             </div>
         </Fieldset>
     )

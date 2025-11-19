@@ -10,7 +10,6 @@ function LecturaProvider({ children }){
     useEffect(() => {
         const data = localStorage.getItem(localKey);
         if (data !== null) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
             setMediciones(JSON.parse(data));
         }
     }, []);
@@ -19,19 +18,19 @@ function LecturaProvider({ children }){
         localStorage.setItem(localKey, JSON.stringify(mediciones));
     }, [mediciones]);
 
-    const getMediciones = (medicion) => {
+    const getMedicion = (medicion) => {
         setMediciones([...mediciones, medicion]);
     }
 
-    const removeMedicion = (id) => {
+    const eliminarMedicion = (id) => {
         setMediciones(mediciones.filter(m => m.id !== id));
     }
 
     const globalState = {
         toast,
         mediciones,
-        getMediciones,
-        removeMedicion
+        getMedicion,
+        eliminarMedicion
     };
 
     return (
